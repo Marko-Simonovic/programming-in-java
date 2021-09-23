@@ -10,20 +10,20 @@ class CalcTest {
 
     @BeforeEach
     void setUp() {
-        System.out.println("CalcTest.setUp...");
+        System.out.println("TestCalc.setUp...");
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("CalcTest.tearDown...");
+        System.out.println("TestCalc.tearDown...");
     }
 
     @Test
-    void add() {
+    void onePlusTwoIsThree() {
         // if
         int a = 1, b = 2;
 
         // then
-        assertEquals(3, Calc.add(1,2));
+        assertEquals(3, Calc.add(a,b));
     }
 }

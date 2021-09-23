@@ -1,0 +1,6 @@
+/gradle/
+**/build
+gradlew
+gradlew.bat
+JavaDOC_lab01
+build.gradle
