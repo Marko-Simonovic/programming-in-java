@@ -5,85 +5,16 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-/**
- * For any object {@code obj} of a class that implements the {@link Iterable} interface,
- * the enhanced for loop is translated to the form:
- * <pre>
- * Iterator<...> iter = obj.iterator();
- * while (iter.hasNext()) {
- *   ... e = iter.next();
- * }
- * </pre>
- *
- * <p>Explicit use of iterators is not recommended in the modern Java. Use the enhanced for-loop instead, i.e.
- * <pre>
- * for (var e : obj) {
- *   // process element
- * }
- * </pre>
- *
- * @see <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Iterator.html">Iterator</a>
- * @see <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html">Iterable</a>
- */
-class IterableArray<E> implements Iterable<E> {
-    private final Object[] elems;
-    private final int size;
-
-    public IterableArray(int size) {
-        this.size = size;
-        this.elems = new Object[size];
-    }
-
-    @SuppressWarnings("unchecked")
-    public E get(int index) {
-        if (index >= size || index < 0) throw new IndexOutOfBoundsException();
-        return (E) elems[index];
-    }
-    public void set(int index, E elem) {
-        if (index >= size || index < 0) throw new IndexOutOfBoundsException();
-        elems[index] = elem;
-    }
-
-    @Override
-    public String toString() {
-        return "IterableArray{" + "elems=" + Arrays.toString(elems) + ", size=" + size + '}';
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return new ArrayIterator();
-    }
-
-    @Override
-    public void forEach(Consumer<? super E> action) {
-        Iterable.super.forEach(action);
-    }
-
-    /** Iterator as a nested non-static private class */
-    private class ArrayIterator implements Iterator<E> {
-        private int i = 0;
-
-        public ArrayIterator() {
-            System.out.println("New iterator is being created...");
-        }
-
-        @Override
-        public boolean hasNext() {
-            return i < size;
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        public E next() {
-            if (!hasNext()) throw new NoSuchElementException();
-            return (E) elems[i++];
-        }
-    }
-}
-
 public class Main {
 
-    /** Using iterators */
+    /** Using iterators<br><br>
+     * <b>It means that we create an object Iterator which will serve as an index.</b>
+     * This object has two methods : hasNext() and Next()
+     * <ul>
+     *     <li><b>hasNext() :</b> checks if index < end and returns true or false</li>
+     *     <li><b>next() :</b> gets the next element so we overwrite previous value</li>
+     * </ul>
+     */
     private static void demo1() {
         int itArrSize = 5;
         IterableArray<Integer> itArr = new IterableArray<>(itArrSize);

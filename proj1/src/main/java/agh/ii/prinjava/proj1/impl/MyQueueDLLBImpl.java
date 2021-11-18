@@ -12,7 +12,7 @@ import agh.ii.prinjava.proj1.MyQueue;
  * @param <E> the element that will compose the Queue.
  */
 public class MyQueueDLLBImpl<E> implements MyQueue<E> {
-    private DLinkList<E> elems = new DLinkList<>();
+    private DLinkList<E> elems = new DLinkList<>(); // This represents AGGREGATION and we should prioritize AGG over INHERITANCE
 
     /**
      * Put an element in the "back" of the Queue which means at the last position.<br><br>
